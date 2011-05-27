@@ -281,7 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_ENABLE_OBJC_GC = NO;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Development;
 		};
@@ -289,14 +289,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_ENABLE_OBJC_GC = NO;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Deployment;
 		};
 		E13F800F0863426A00EC3999 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_VERSION = 4.0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Default;
 		};
