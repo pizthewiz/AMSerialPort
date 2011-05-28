@@ -37,8 +37,6 @@
 #include <IOKit/serial/IOSerialKeys.h>
 #include <IOKit/IOBSD.h>
 
-static AMSerialPortList *AMSerialPortListSingleton = nil;
-
 NSString *const AMSerialPortListDidAddPortsNotification = @"AMSerialPortListDidAddPortsNotification";
 NSString *const AMSerialPortListDidRemovePortsNotification = @"AMSerialPortListDidRemovePortsNotification";
 NSString *const AMSerialPortListAddedPorts = @"AMSerialPortListAddedPorts";
