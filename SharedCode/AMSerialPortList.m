@@ -49,68 +49,14 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 
 + (AMSerialPortList *)sharedPortList
 {
-    @synchronized(self) {
-        if (AMSerialPortListSingleton == nil) {
-#ifndef __OBJC_GC__
-			[[self alloc] init]; // assignment not done here
-#else
-			// Singleton creation is easy in the GC case, just create it if it hasn't been created yet,
-			// it won't get collected since globals are strongly referenced.
-			AMSerialPortListSingleton = [[self alloc] init]; 
-#endif
-       }
-    }
-    return AMSerialPortListSingleton;
-}
+    static dispatch_once_t pred;
+    static AMSerialPortList* sharedPortList = nil;
 
-#ifndef __OBJC_GC__
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-	id result = nil;
-    @synchronized(self) {
-        if (AMSerialPortListSingleton == nil) {
-            AMSerialPortListSingleton = [super allocWithZone:zone];
-			result = AMSerialPortListSingleton;  // assignment and return on first allocation
-			//on subsequent allocation attempts return nil
-        }
-    }
-	return result;
+    dispatch_once(&pred, ^{
+        sharedPortList = [[AMSerialPortList alloc] init];
+    });
+    return sharedPortList;
 }
- 
-- (id)copyWithZone:(NSZone *)zone
-{
-	(void)zone;
-    return self;
-}
- 
-- (id)retain
-{
-    return self;
-}
- 
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
- 
-- (oneway void)release
-{
-    //do nothing
-}
- 
-- (id)autorelease
-{
-    return self;
-}
-
-- (void)dealloc
-{
-	[portList release]; portList = nil;
-	[super dealloc];
-}
-
-#endif
 
 - (AMSerialPort *)getNextSerialPort:(io_iterator_t)serialPortIterator
 {
@@ -274,9 +220,10 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 
 - (id)init
 {
-	if ((self = [super init])) {
+    self = [super init];
+	if (self) {
 		portList = [[NSMutableArray array] retain];
-	
+
 		[self addAllSerialPortsToArray:portList];
 		[self registerForSerialPortChangeNotifications];
 	}
