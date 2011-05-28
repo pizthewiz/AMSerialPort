@@ -128,16 +128,12 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 - (AMSerialPort *)portByPath:(NSString *)bsdPath
 {
 	AMSerialPort *result = nil;
-	AMSerialPort *port;
-	NSEnumerator *enumerator;
-	
-	enumerator = [portList objectEnumerator];
-	while ((port = [enumerator nextObject]) != nil) {
-		if ([[port bsdPath] isEqualToString:bsdPath]) {
-			result = port;
-			break;
-		}
-	}
+    for (AMSerialPort* port in portList) {
+        if (![[port bsdPath] isEqualToString:bsdPath])
+            continue;
+        result = port;
+        break;
+    }
 	return result;
 }
 
@@ -324,14 +320,12 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (AMSerialPort *)objectWithName:(NSString *)name
 {
 	AMSerialPort *result = nil;
-	NSEnumerator *enumerator = [portList objectEnumerator];
-	AMSerialPort *port;
-	while ((port = [enumerator nextObject]) != nil) {
-		if ([[port name] isEqualToString:name]) {
-			result = port;
-			break;
-		}
-	}
+    for (AMSerialPort* port in portList) {
+        if (![[port name] isEqualToString:name])
+            continue;
+        result = port;
+        break;
+    }
 	return result;
 }
 
@@ -343,13 +337,11 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey
 {
 	NSMutableArray *result = [NSMutableArray array];
-	NSEnumerator *enumerator = [portList objectEnumerator];
-	AMSerialPort *port;
-	while ((port = [enumerator nextObject]) != nil) {
-		if ([[port type] isEqualToString:serialTypeKey]) {
-			[result addObject:port];
-		}
-	}
+    for (AMSerialPort* port in portList) {
+        if (![[port type] isEqualToString:serialTypeKey])
+            continue;
+        [result addObject:port];
+    }
 	return result;
 }
 
