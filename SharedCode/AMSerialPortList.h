@@ -43,8 +43,6 @@ extern NSString * const AMSerialPortListRemovedPorts;
 
 + (AMSerialPortList *)sharedPortList;
 
-- (NSUInteger)count;
-- (AMSerialPort *)objectAtIndex:(NSUInteger)idx;
 - (AMSerialPort *)objectWithName:(NSString *)name;
 
 - (NSArray *)serialPorts;

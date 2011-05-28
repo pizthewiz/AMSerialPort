@@ -294,16 +294,6 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 	return self;
 }
 
-- (NSUInteger)count
-{
-	return [portList count];
-}
-
-- (AMSerialPort *)objectAtIndex:(NSUInteger)idx
-{
-	return [portList objectAtIndex:idx];
-}
-
 - (AMSerialPort *)objectWithName:(NSString *)name
 {
 	AMSerialPort *result = nil;
