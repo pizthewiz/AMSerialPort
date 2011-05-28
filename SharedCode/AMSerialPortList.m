@@ -28,7 +28,6 @@
 
 #import "AMSerialPortList.h"
 #import "AMSerialPort.h"
-#import "AMStandardEnumerator.h"
 
 #include <termios.h>
 
@@ -112,18 +111,6 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 }
 
 #endif
-
-+ (NSEnumerator *)portEnumerator
-{
-	return [[[AMStandardEnumerator alloc] initWithCollection:[AMSerialPortList sharedPortList]
-		countSelector:@selector(count) objectAtIndexSelector:@selector(objectAtIndex:)] autorelease];
-}
-
-+ (NSEnumerator *)portEnumeratorForSerialPortsOfType:(NSString *)serialTypeKey
-{
-	return [[[AMStandardEnumerator alloc] initWithCollection:[[AMSerialPortList sharedPortList]
-		serialPortsOfType:serialTypeKey] countSelector:@selector(count) objectAtIndexSelector:@selector(objectAtIndex:)] autorelease];
-}
 
 - (AMSerialPort *)portByPath:(NSString *)bsdPath
 {

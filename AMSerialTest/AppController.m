@@ -119,10 +119,7 @@
 
 - (IBAction)listDevices:(id)sender
 {
-	// get an port enumerator
-	NSEnumerator *enumerator = [AMSerialPortList portEnumerator];
-	AMSerialPort *aPort;
-	while (aPort = [enumerator nextObject]) {
+    for (AMSerialPort* aPort in [[AMSerialPortList sharedPortList] serialPorts]) {
 		// print port name
 		[outputTextView insertText:[aPort name]];
 		[outputTextView insertText:@":"];
