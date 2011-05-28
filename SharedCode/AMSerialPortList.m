@@ -112,18 +112,6 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 
 #endif
 
-- (AMSerialPort *)portByPath:(NSString *)bsdPath
-{
-	AMSerialPort *result = nil;
-    for (AMSerialPort* port in portList) {
-        if (![[port bsdPath] isEqualToString:bsdPath])
-            continue;
-        result = port;
-        break;
-    }
-	return result;
-}
-
 - (AMSerialPort *)getNextSerialPort:(io_iterator_t)serialPortIterator
 {
 	AMSerialPort	*serialPort = nil;
@@ -135,7 +123,7 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 		CFStringRef serviceType = (CFStringRef)IORegistryEntryCreateCFProperty(serialService, CFSTR(kIOSerialBSDTypeKey), kCFAllocatorDefault, 0);
 		if (modemName && bsdPath) {
 			// If the port already exists in the list of ports, we want that one.  We only create a new one as a last resort.
-			serialPort = [self portByPath:(NSString*)bsdPath];
+			serialPort = [self serialPortWithName:(NSString*)bsdPath];
 			if (serialPort == nil) {
 				serialPort = [[[AMSerialPort alloc] init:(NSString*)bsdPath withName:(NSString*)modemName type:(NSString*)serviceType] autorelease];
 			}
@@ -282,6 +270,8 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 	}
 }
 
+#pragma mark -
+
 - (id)init
 {
 	if ((self = [super init])) {
@@ -294,7 +284,24 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 	return self;
 }
 
-- (AMSerialPort *)objectWithName:(NSString *)name
+- (NSArray *)serialPorts
+{
+	return [[portList copy] autorelease];
+}
+
+- (AMSerialPort *)serialPortWithPath:(NSString *)bsdPath
+{
+	AMSerialPort *result = nil;
+    for (AMSerialPort* port in portList) {
+        if (![[port bsdPath] isEqualToString:bsdPath])
+            continue;
+        result = port;
+        break;
+    }
+	return result;
+}
+
+- (AMSerialPort *)serialPortWithName:(NSString *)name
 {
 	AMSerialPort *result = nil;
     for (AMSerialPort* port in portList) {
@@ -304,11 +311,6 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
         break;
     }
 	return result;
-}
-
-- (NSArray *)serialPorts
-{
-	return [[portList copy] autorelease];
 }
 
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey
