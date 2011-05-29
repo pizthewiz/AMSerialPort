@@ -48,7 +48,7 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 + (AMSerialPortList *)sharedPortList
 {
     static dispatch_once_t pred;
-    static AMSerialPortList* sharedPortList = nil;
+    static AMSerialPortList *sharedPortList = nil;
 
     dispatch_once(&pred, ^{
         sharedPortList = [[AMSerialPortList alloc] init];
@@ -219,14 +219,13 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (id)init
 {
     self = [super init];
-	if (self) {
-		portList = [[NSMutableArray array] retain];
+    if (self) {
+        portList = [[NSMutableArray array] retain];
 
-		[self addAllSerialPortsToArray:portList];
-		[self registerForSerialPortChangeNotifications];
-	}
-	
-	return self;
+        [self addAllSerialPortsToArray:portList];
+        [self registerForSerialPortChangeNotifications];
+    }    
+    return self;
 }
 
 - (NSArray *)serialPorts
@@ -236,38 +235,37 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 
 - (AMSerialPort *)serialPortWithPath:(NSString *)bsdPath
 {
-	AMSerialPort *result = nil;
+    AMSerialPort *result = nil;
     for (AMSerialPort* port in portList) {
         if (![[port bsdPath] isEqualToString:bsdPath])
             continue;
         result = port;
         break;
     }
-	return result;
+    return result;
 }
 
 - (AMSerialPort *)serialPortWithName:(NSString *)name
 {
-	AMSerialPort *result = nil;
+    AMSerialPort *result = nil;
     for (AMSerialPort* port in portList) {
         if (![[port name] isEqualToString:name])
             continue;
         result = port;
         break;
     }
-	return result;
+    return result;
 }
 
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey
 {
-	NSMutableArray *result = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
     for (AMSerialPort* port in portList) {
         if (![[port type] isEqualToString:serialTypeKey])
             continue;
         [result addObject:port];
     }
-	return result;
+    return result;
 }
-
 
 @end
