@@ -56,8 +56,6 @@
 #define B230400	230400
  */
 
-#import "AMSDKCompatibility.h"
-
 #import <stdio.h>
 #import <string.h>
 #import <unistd.h>

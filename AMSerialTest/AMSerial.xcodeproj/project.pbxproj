@@ -21,7 +21,6 @@
 		E158FFFC0C58DE2E00B8171B /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF950C58DDAB00B8171B /* AMSerialPort.m */; };
 		E158FFFD0C58DE2E00B8171B /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF970C58DDAB00B8171B /* AMSerialPortAdditions.m */; };
 		E158FFFF0C58DE2E00B8171B /* AMSerialPortList.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF9B0C58DDAB00B8171B /* AMSerialPortList.m */; };
-		E1D8DC0D0CE0F11400306A0A /* AMSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D8DC0C0CE0F11300306A0A /* AMSDKCompatibility.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,6 @@
 		E158FF9A0C58DDAB00B8171B /* AMSerialPortList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSerialPortList.h; path = ../SharedCode/AMSerialPortList.h; sourceTree = SOURCE_ROOT; };
 		E158FF9B0C58DDAB00B8171B /* AMSerialPortList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSerialPortList.m; path = ../SharedCode/AMSerialPortList.m; sourceTree = SOURCE_ROOT; };
 		E1CC710C106E6C2B00F7D688 /* BSD License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BSD License.txt"; sourceTree = "<group>"; };
-		E1D8DC0C0CE0F11300306A0A /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSDKCompatibility.h; path = ../SharedCode/AMSDKCompatibility.h; sourceTree = SOURCE_ROOT; };
 		F5B6E09402D03AB10100010A /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		F5B6E09502D03AB10100010A /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		F5B6E09E02D03CD90100010A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
@@ -70,7 +68,6 @@
 				E158FF970C58DDAB00B8171B /* AMSerialPortAdditions.m */,
 				E158FF9A0C58DDAB00B8171B /* AMSerialPortList.h */,
 				E158FF9B0C58DDAB00B8171B /* AMSerialPortList.m */,
-				E1D8DC0C0CE0F11300306A0A /* AMSDKCompatibility.h */,
 				F5B6E09402D03AB10100010A /* AppController.h */,
 				F5B6E09502D03AB10100010A /* AppController.m */,
 			);
@@ -155,7 +152,6 @@
 				E158FFF00C58DE2E00B8171B /* AMSerialPort.h in Headers */,
 				E158FFF10C58DE2E00B8171B /* AMSerialPortAdditions.h in Headers */,
 				E158FFF30C58DE2E00B8171B /* AMSerialPortList.h in Headers */,
-				E1D8DC0D0CE0F11400306A0A /* AMSDKCompatibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

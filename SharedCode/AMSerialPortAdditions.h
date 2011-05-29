@@ -26,8 +26,6 @@
 //  2009-05-08 Sean McBride
 //  - added writeBytes:length:error: method
 
-#import "AMSDKCompatibility.h"
-
 #import <Foundation/Foundation.h>
 #import "AMSerialPort.h"
 

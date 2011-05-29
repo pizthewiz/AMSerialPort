@@ -24,8 +24,6 @@
 //  - fixed some memory management issues
 
 
-#import "AMSDKCompatibility.h"
-
 #import "AMSerialPortList.h"
 #import "AMSerialPort.h"
 

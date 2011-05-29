@@ -28,8 +28,6 @@
 //  - no longer compare BOOL against YES (dangerous!)
 //  - renamed method to start with lowercase letter, as per Cocoa convention
 
-#import "AMSDKCompatibility.h"
-
 #import <stdio.h>
 #import <string.h>
 #import <unistd.h>

@@ -33,8 +33,6 @@
 //  - don't rely on system clock for measuring elapsed time (because the user can change the clock)
 
 
-#import "AMSDKCompatibility.h"
-
 #import <sys/ioctl.h>
 #import <sys/filio.h>
 #import <pthread.h>
