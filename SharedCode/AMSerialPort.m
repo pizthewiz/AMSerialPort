@@ -30,17 +30,17 @@
 
 #import "AMSDKCompatibility.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <paths.h>
-#include <termios.h>
-#include <sys/time.h>
-#include <sysexits.h>
-#include <sys/param.h>
-#include <sys/ioctl.h>
+#import <stdio.h>
+#import <string.h>
+#import <unistd.h>
+#import <fcntl.h>
+#import <errno.h>
+#import <paths.h>
+#import <termios.h>
+#import <sys/time.h>
+#import <sysexits.h>
+#import <sys/param.h>
+#import <sys/ioctl.h>
 
 #import "AMSerialPort.h"
 #import "AMSerialErrors.h"
