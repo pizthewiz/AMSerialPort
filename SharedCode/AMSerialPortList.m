@@ -29,13 +29,13 @@
 #import "AMSerialPortList.h"
 #import "AMSerialPort.h"
 
-#include <termios.h>
+#import <termios.h>
 
-#include <CoreFoundation/CoreFoundation.h>
+#import <CoreFoundation/CoreFoundation.h>
 
-#include <IOKit/IOKitLib.h>
-#include <IOKit/serial/IOSerialKeys.h>
-#include <IOKit/IOBSD.h>
+#import <IOKit/IOKitLib.h>
+#import <IOKit/serial/IOSerialKeys.h>
+#import <IOKit/IOBSD.h>
 
 NSString *const AMSerialPortListDidAddPortsNotification = @"AMSerialPortListDidAddPortsNotification";
 NSString *const AMSerialPortListDidRemovePortsNotification = @"AMSerialPortListDidRemovePortsNotification";
