@@ -10,7 +10,6 @@
 		E15800010C58DE2E00B8171B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		E15800020C58DE2E00B8171B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B6E09E02D03CD90100010A /* IOKit.framework */; };
 		E158FFEC0C58DE2E00B8171B /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B6E09402D03AB10100010A /* AppController.h */; };
-		E158FFED0C58DE2E00B8171B /* AMStandardEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E10D3BC405D8C8FF00399764 /* AMStandardEnumerator.h */; };
 		E158FFEE0C58DE2E00B8171B /* AMSerialErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = E158FF910C58DDAB00B8171B /* AMSerialErrors.h */; };
 		E158FFEF0C58DE2E00B8171B /* AMSerialPort_Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = E158FF920C58DDAB00B8171B /* AMSerialPort_Deprecated.h */; };
 		E158FFF00C58DE2E00B8171B /* AMSerialPort.h in Headers */ = {isa = PBXBuildFile; fileRef = E158FF940C58DDAB00B8171B /* AMSerialPort.h */; };
@@ -21,7 +20,6 @@
 		E158FFF60C58DE2E00B8171B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		E158FFF80C58DE2E00B8171B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		E158FFF90C58DE2E00B8171B /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B6E09502D03AB10100010A /* AppController.m */; };
-		E158FFFA0C58DE2E00B8171B /* AMStandardEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E10D3BC505D8C8FF00399764 /* AMStandardEnumerator.m */; };
 		E158FFFB0C58DE2E00B8171B /* AMSerialPort_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF930C58DDAB00B8171B /* AMSerialPort_Deprecated.m */; };
 		E158FFFC0C58DE2E00B8171B /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF950C58DDAB00B8171B /* AMSerialPort.m */; };
 		E158FFFD0C58DE2E00B8171B /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF970C58DDAB00B8171B /* AMSerialPortAdditions.m */; };
@@ -37,8 +35,6 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		E10D3BC405D8C8FF00399764 /* AMStandardEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMStandardEnumerator.h; path = ../SharedCode/AMStandardEnumerator.h; sourceTree = SOURCE_ROOT; };
-		E10D3BC505D8C8FF00399764 /* AMStandardEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMStandardEnumerator.m; path = ../SharedCode/AMStandardEnumerator.m; sourceTree = SOURCE_ROOT; };
 		E15800070C58DE2E00B8171B /* Info-AMSerialTest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AMSerialTest.plist"; sourceTree = "<group>"; };
 		E15800080C58DE2F00B8171B /* AMSerialTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMSerialTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E158FF910C58DDAB00B8171B /* AMSerialErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSerialErrors.h; path = ../SharedCode/AMSerialErrors.h; sourceTree = SOURCE_ROOT; };
@@ -87,8 +83,6 @@
 				E158FF9A0C58DDAB00B8171B /* AMSerialPortList.h */,
 				E158FF9B0C58DDAB00B8171B /* AMSerialPortList.m */,
 				E1D8DC0C0CE0F11300306A0A /* AMSDKCompatibility.h */,
-				E10D3BC405D8C8FF00399764 /* AMStandardEnumerator.h */,
-				E10D3BC505D8C8FF00399764 /* AMStandardEnumerator.m */,
 				F5B6E09402D03AB10100010A /* AppController.h */,
 				F5B6E09502D03AB10100010A /* AppController.m */,
 			);
@@ -169,7 +163,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E158FFEC0C58DE2E00B8171B /* AppController.h in Headers */,
-				E158FFED0C58DE2E00B8171B /* AMStandardEnumerator.h in Headers */,
 				E158FFEE0C58DE2E00B8171B /* AMSerialErrors.h in Headers */,
 				E158FFEF0C58DE2E00B8171B /* AMSerialPort_Deprecated.h in Headers */,
 				E158FFF00C58DE2E00B8171B /* AMSerialPort.h in Headers */,
@@ -246,7 +239,6 @@
 			files = (
 				E158FFF80C58DE2E00B8171B /* main.m in Sources */,
 				E158FFF90C58DE2E00B8171B /* AppController.m in Sources */,
-				E158FFFA0C58DE2E00B8171B /* AMStandardEnumerator.m in Sources */,
 				E158FFFB0C58DE2E00B8171B /* AMSerialPort_Deprecated.m in Sources */,
 				E158FFFC0C58DE2E00B8171B /* AMSerialPort.m in Sources */,
 				E158FFFD0C58DE2E00B8171B /* AMSerialPortAdditions.m in Sources */,
