@@ -56,7 +56,7 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 
 - (AMSerialPort *)getNextSerialPort:(io_iterator_t)serialPortIterator
 {
-	AMSerialPort	*serialPort = nil;
+	AMSerialPort *serialPort = nil;
 
 	io_object_t serialService = IOIteratorNext(serialPortIterator);
 	if (serialService != 0) {
@@ -97,8 +97,8 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 		[portList addObject:serialPort];
 	}
 	
-	NSNotificationCenter* notifCenter = [NSNotificationCenter defaultCenter];
-	NSDictionary* userInfo = [NSDictionary dictionaryWithObject:addedPorts forKey:AMSerialPortListAddedPorts];
+	NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:addedPorts forKey:AMSerialPortListAddedPorts];
 	[notifCenter postNotificationName:AMSerialPortListDidAddPortsNotification object:self userInfo:userInfo];
 }
 
@@ -116,8 +116,8 @@ NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 		[portList removeObject:serialPort];
 	}
 
-	NSNotificationCenter* notifCenter = [NSNotificationCenter defaultCenter];
-	NSDictionary* userInfo = [NSDictionary dictionaryWithObject:removedPorts forKey:AMSerialPortListRemovedPorts];
+	NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:removedPorts forKey:AMSerialPortListRemovedPorts];
 	[notifCenter postNotificationName:AMSerialPortListDidRemovePortsNotification object:self userInfo:userInfo];
 }
 
@@ -145,7 +145,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 				CFDictionarySetValue(classesToMatch1, CFSTR(kIOSerialBSDTypeKey), CFSTR(kIOSerialBSDAllTypes));
 				
 				// Copy classesToMatch1 now, while it has a non-zero ref count.
-				CFMutableDictionaryRef classesToMatch2 = CFDictionaryCreateMutableCopy(kCFAllocatorDefault, 0, classesToMatch1);			
+				CFMutableDictionaryRef classesToMatch2 = CFDictionaryCreateMutableCopy(kCFAllocatorDefault, 0, classesToMatch1);
 				// Add to the runloop
 				CFRunLoopAddSource([[NSRunLoop currentRunLoop] getCFRunLoop], notificationSource, kCFRunLoopCommonModes);
 				
@@ -183,10 +183,10 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 
 - (void)addAllSerialPortsToArray:(NSMutableArray *)array
 {
-	kern_return_t kernResult; 
+	kern_return_t kernResult;
 	CFMutableDictionaryRef classesToMatch;
 	io_iterator_t serialPortIterator;
-	AMSerialPort* serialPort;
+	AMSerialPort *serialPort;
 	
 	// Serial devices are instances of class IOSerialBSDClient
 	classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue);
@@ -194,8 +194,8 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 		CFDictionarySetValue(classesToMatch, CFSTR(kIOSerialBSDTypeKey), CFSTR(kIOSerialBSDAllTypes));
 
 		// This function decrements the refcount of the dictionary passed it
-		kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault, classesToMatch, &serialPortIterator);    
-		if (kernResult == KERN_SUCCESS) {			
+		kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault, classesToMatch, &serialPortIterator);
+		if (kernResult == KERN_SUCCESS) {
 			while ((serialPort = [self getNextSerialPort:serialPortIterator]) != nil) {
 				[array addObject:serialPort];
 			}
@@ -241,7 +241,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (AMSerialPort *)serialPortWithPath:(NSString *)bsdPath
 {
     AMSerialPort *result = nil;
-    for (AMSerialPort* port in portList) {
+    for (AMSerialPort *port in portList) {
         if (![[port bsdPath] isEqualToString:bsdPath])
             continue;
         result = port;
@@ -253,7 +253,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (AMSerialPort *)serialPortWithName:(NSString *)name
 {
     AMSerialPort *result = nil;
-    for (AMSerialPort* port in portList) {
+    for (AMSerialPort *port in portList) {
         if (![[port name] isEqualToString:name])
             continue;
         result = port;
@@ -265,7 +265,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey
 {
     NSMutableArray *result = [NSMutableArray array];
-    for (AMSerialPort* port in portList) {
+    for (AMSerialPort *port in portList) {
         if (![[port type] isEqualToString:serialTypeKey])
             continue;
         [result addObject:port];
