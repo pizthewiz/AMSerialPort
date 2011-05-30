@@ -226,6 +226,13 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
     return self;
 }
 
+- (void)dealloc {
+    [portList release];
+    // TODO - remove notification observer
+
+    [super dealloc];
+}
+
 - (NSArray *)serialPorts
 {
 	return [[portList copy] autorelease];
