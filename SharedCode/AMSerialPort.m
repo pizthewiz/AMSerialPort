@@ -166,8 +166,8 @@ NSString *const AMSerialErrorDomain = @"de.harmless.AMSerial.ErrorDomain";
 		old = delegate;
 		delegate = [newDelegate retain];
 		[old release];
-		delegateHandlesReadInBackground = [delegate respondsToSelector:@selector(serialPortReadData:)];
-		delegateHandlesWriteInBackground = [delegate respondsToSelector:@selector(serialPortWriteProgress:)];
+		delegateHandlesReadInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPortReadData:)];
+		delegateHandlesWriteInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPortWriteProgress:)];
 	}
 }
 
