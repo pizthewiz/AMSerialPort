@@ -249,59 +249,23 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E13F800D0863426A00EC3999 /* Development */ = {
+		D80CAA6A13946E1D00F6F861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-			};
-			name = Development;
-		};
-		E13F800E0863426A00EC3999 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_ENABLE_OBJC_GC = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-			};
-			name = Deployment;
-		};
-		E13F800F0863426A00EC3999 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-			};
-			name = Default;
-		};
-		E15800040C58DE2E00B8171B /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-AMSerialTest.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = AMSerialTest;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					AMSerialDebug,
 				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				ONLY_ACTIVE_ARCH = YES;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		E15800050C58DE2E00B8171B /* Deployment */ = {
+		D80CAA6B13946E1D00F6F861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -325,12 +289,24 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Debug;
 		};
-		E15800060C58DE2E00B8171B /* Default */ = {
+		D80CAA6C13946E2600F6F861 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = Release;
+		};
+		D80CAA6D13946E2600F6F861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
@@ -347,8 +323,9 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
 			};
-			name = Default;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -356,22 +333,20 @@
 		E13F800C0863426A00EC3999 /* Build configuration list for PBXProject "AMSerial" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E13F800D0863426A00EC3999 /* Development */,
-				E13F800E0863426A00EC3999 /* Deployment */,
-				E13F800F0863426A00EC3999 /* Default */,
+				D80CAA6A13946E1D00F6F861 /* Debug */,
+				D80CAA6C13946E2600F6F861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 		E15800030C58DE2E00B8171B /* Build configuration list for PBXNativeTarget "AMSerialTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E15800040C58DE2E00B8171B /* Development */,
-				E15800050C58DE2E00B8171B /* Deployment */,
-				E15800060C58DE2E00B8171B /* Default */,
+				D80CAA6B13946E1D00F6F861 /* Debug */,
+				D80CAA6D13946E2600F6F861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
