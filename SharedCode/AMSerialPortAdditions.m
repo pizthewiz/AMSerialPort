@@ -247,7 +247,7 @@
 #ifdef AMSerialDebug
 	NSLog(@"readDataInBackground");
 #endif
-	if (delegateHandlesReadInBackground) {
+	if (self.readDelegate) {
 		countReadInBackgroundThreads++;
 		[NSThread detachNewThreadSelector:@selector(readDataInBackgroundThread) toTarget:self withObject:nil];
 	} else {
@@ -268,7 +268,7 @@
 #ifdef AMSerialDebug
 	NSLog(@"writeDataInBackground");
 #endif
-	if (delegateHandlesWriteInBackground) {
+	if (self.writeDelegate) {
 		countWriteInBackgroundThreads++;
 		[NSThread detachNewThreadSelector:@selector(writeDataInBackgroundThread:) toTarget:self withObject:data];
 	} else {
@@ -341,7 +341,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
         if (bytesRead > 0) {
             data = [NSData dataWithBytes:localBuffer length:bytesRead];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [delegate serialPort:self readData:data];
+                [self.readDelegate serialPort:self readData:data];
             });           
         } else {
 #ifdef AMSerialDebug
@@ -632,7 +632,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
 #ifdef AMSerialDebug
 	NSLog(@"send AMSerialWriteInBackgroundProgressMessage");
 #endif
-	[(NSObject *)delegate performSelectorOnMainThread:@selector(serialPortWriteProgress:) withObject:
+	[(NSObject *)self.writeDelegate performSelectorOnMainThread:@selector(serialPortWriteProgress:) withObject:
 		[NSDictionary dictionaryWithObjectsAndKeys:
 			self, @"serialPort",
 			[NSNumber numberWithUnsignedLongLong:progress], @"value",

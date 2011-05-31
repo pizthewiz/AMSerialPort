@@ -100,9 +100,11 @@ typedef enum {
 
 @class AMSerialPort;
 
-@protocol AMSerialPortDelegate
-@optional
-- (void)serialPort:(AMSerialPort*)port readData:(NSData*)data;
+@protocol AMSerialPortReadDelegate
+- (void)serialPort:(AMSerialPort *)port readData:(NSData *)data;
+@end
+@protocol AMSerialPortWriteDelegate
+// TODO - (void)serialPort:(AMSerialPort *)port ...;
 - (void)serialPortWriteProgress:(NSDictionary *)dataDictionary;
 @end
 
@@ -123,13 +125,12 @@ typedef enum {
 	char * __strong buffer;
 	NSTimeInterval readTimeout; // for public blocking read methods and doRead
 	fd_set * __strong readfds;
-	id <AMSerialPortDelegate> delegate;
-	BOOL delegateHandlesReadInBackground;
-	BOOL delegateHandlesWriteInBackground;
+	id <AMSerialPortReadDelegate> readDelegate;
+	id <AMSerialPortWriteDelegate> writeDelegate;
 	NSLock *writeLock;
 	NSLock *readLock;
 	NSLock *closeLock;
-	
+
 	// used by AMSerialPortAdditions only:
 	id am_readTarget;
 	SEL am_readSelector;
@@ -249,14 +250,14 @@ typedef enum {
 - (char)endOfLineCharacter;
 - (void)setEndOfLineCharacter:(char)eol;
 
+// TODO - this should return an NSError* perhaps
 - (void)clearError;			// call this before changing any settings
 - (BOOL)commitChanges;	// call this after using any of the above set... functions
 - (int)errorCode;				// if -commitChanges returns NO, look here for further info
 
 // setting the delegate (for background reading/writing)
-
-- (id <AMSerialPortDelegate>)delegate;
-- (void)setDelegate:(id <AMSerialPortDelegate>)newDelegate;
+@property (nonatomic, retain) id <AMSerialPortReadDelegate> readDelegate;
+@property (nonatomic, retain) id <AMSerialPortWriteDelegate> writeDelegate;
 
 // time out for blocking reads in seconds
 - (NSTimeInterval)readTimeout;

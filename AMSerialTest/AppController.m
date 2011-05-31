@@ -51,7 +51,7 @@
 		[self setPort:[[[AMSerialPort alloc] init:deviceName withName:deviceName type:(NSString*)CFSTR(kIOSerialBSDModemType)] autorelease]];
 		
 		// register as self as delegate for port
-		[port setDelegate:self];
+		[port setReadDelegate:self];
 		
 		[outputTextView insertText:@"attempting to open port\r"];
 		[outputTextView setNeedsDisplay:YES];

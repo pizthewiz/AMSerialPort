@@ -7,7 +7,7 @@
 #import "AMSerialPort.h"
 
 
-@interface AppController : NSObject <AMSerialPortDelegate> {
+@interface AppController : NSObject <AMSerialPortReadDelegate> {
 	IBOutlet NSTextField *inputTextField;
 	IBOutlet NSTextField *deviceTextField;
 	IBOutlet NSTextView *outputTextView;

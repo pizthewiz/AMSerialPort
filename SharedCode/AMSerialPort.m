@@ -60,6 +60,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
 @implementation AMSerialPort
 
+@synthesize readDelegate, writeDelegate;
+
 - (id)init:(NSString *)path withName:(NSString *)name type:(NSString *)type
 	// path is a bsdPath
 	// name is an IOKit service name
@@ -109,12 +111,15 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	if (fileDescriptor != -1)
 		NSLog(@"It is a programmer error to have not called -close on an AMSerialPort you have opened");
 #endif
-	
+
+    [(NSObject *)readDelegate release]; readDelegate = nil;
+    [(NSObject *)writeDelegate release]; writeDelegate = nil;
+
 	[readLock release]; readLock = nil;
 	[writeLock release]; writeLock = nil;
 	[closeLock release]; closeLock = nil;
 	[am_readTarget release]; am_readTarget = nil;
-	
+
 	free(readfds); readfds = NULL;
 	free(buffer); buffer = NULL;
 	free(originalOptions); originalOptions = NULL;
@@ -141,6 +146,10 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
 #endif
 
+- (id)copy {
+    return [[[self class] alloc] init:bsdPath withName:serviceName type:serviceType];
+}
+
 // So NSLog and gdb's 'po' command give something useful
 - (NSString *)description
 {
@@ -159,26 +168,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		return [[self bsdPath] isEqualToString:[otherObject bsdPath]];
 	return NO;
 }
-
-
-- (id <AMSerialPortDelegate>)delegate
-{
-	return delegate;
-}
-
-- (void)setDelegate:(id <AMSerialPortDelegate>)newDelegate
-{
-	id old = nil;
-	
-	if (newDelegate != delegate) {
-		old = delegate;
-		delegate = [(NSObject *)newDelegate retain];
-		[old release];
-		delegateHandlesReadInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPort:readData:)];
-		delegateHandlesWriteInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPortWriteProgress:)];
-	}
-}
-
 
 - (NSString *)bsdPath
 {
