@@ -69,18 +69,20 @@
 
 #import <Foundation/Foundation.h>
 
-#define	AMSerialOptionServiceName @"AMSerialOptionServiceName"
-#define	AMSerialOptionSpeed @"AMSerialOptionSpeed"
-#define	AMSerialOptionDataBits @"AMSerialOptionDataBits"
-#define	AMSerialOptionParity @"AMSerialOptionParity"
-#define	AMSerialOptionStopBits @"AMSerialOptionStopBits"
-#define	AMSerialOptionInputFlowControl @"AMSerialOptionInputFlowControl"
-#define	AMSerialOptionOutputFlowControl @"AMSerialOptionOutputFlowControl"
-#define	AMSerialOptionEcho @"AMSerialOptionEcho"
-#define	AMSerialOptionCanonicalMode @"AMSerialOptionCanonicalMode"
-
 // By default, debug code is preprocessed out.  If you would like to compile with debug code enabled,
 // "#define AMSerialDebug" before including any AMSerialPort headers, as in your prefix header
+
+extern NSString * const AMSerialErrorDomain;
+
+extern NSString * const AMSerialOptionServiceName;
+extern NSString * const AMSerialOptionSpeed;
+extern NSString * const AMSerialOptionDataBits;
+extern NSString * const AMSerialOptionParity;
+extern NSString * const AMSerialOptionStopBits;
+extern NSString * const AMSerialOptionInputFlowControl;
+extern NSString * const AMSerialOptionOutputFlowControl;
+extern NSString * const AMSerialOptionEcho;
+extern NSString * const AMSerialOptionCanonicalMode;
 
 typedef enum {	
 	kAMSerialParityNone = 0,
@@ -95,8 +97,6 @@ typedef enum {
 
 // Private constant
 #define AMSER_MAXBUFSIZE  4096UL
-
-extern NSString *const AMSerialErrorDomain;
 
 @protocol AMSerialPortDelegate
 @optional
@@ -261,6 +261,5 @@ extern NSString *const AMSerialErrorDomain;
 - (void)setReadTimeout:(NSTimeInterval)aReadTimeout;
 
 - (void)readTimeoutAsTimeval:(struct timeval*)timeout;
-
 
 @end

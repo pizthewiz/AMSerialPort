@@ -35,11 +35,10 @@
 #import <IOKit/serial/IOSerialKeys.h>
 #import <IOKit/IOBSD.h>
 
-NSString *const AMSerialPortListDidAddPortsNotification = @"AMSerialPortListDidAddPortsNotification";
-NSString *const AMSerialPortListDidRemovePortsNotification = @"AMSerialPortListDidRemovePortsNotification";
-NSString *const AMSerialPortListAddedPorts = @"AMSerialPortListAddedPorts";
-NSString *const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
-
+NSString * const AMSerialPortListDidAddPortsNotification = @"AMSerialPortListDidAddPortsNotification";
+NSString * const AMSerialPortListDidRemovePortsNotification = @"AMSerialPortListDidRemovePortsNotification";
+NSString * const AMSerialPortListAddedPorts = @"AMSerialPortListAddedPorts";
+NSString * const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 
 @implementation AMSerialPortList
 

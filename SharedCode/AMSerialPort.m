@@ -44,12 +44,19 @@
 #import "AMSerialErrors.h"
 
 #import <IOKit/serial/IOSerialKeys.h>
-#if defined(MAC_OS_X_VERSION_10_4) && (MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_4)
-	#import <IOKit/serial/ioss.h>
-#endif
+#import <IOKit/serial/ioss.h>
 
-NSString *const AMSerialErrorDomain = @"de.harmless.AMSerial.ErrorDomain";
+NSString * const AMSerialErrorDomain = @"de.harmless.AMSerial.ErrorDomain";
 
+NSString * const AMSerialOptionServiceName = @"AMSerialOptionServiceName";
+NSString * const AMSerialOptionSpeed = @"AMSerialOptionSpeed";
+NSString * const AMSerialOptionDataBits = @"AMSerialOptionDataBits";
+NSString * const AMSerialOptionParity = @"AMSerialOptionParity";
+NSString * const AMSerialOptionStopBits = @"AMSerialOptionStopBits";
+NSString * const AMSerialOptionInputFlowControl = @"AMSerialOptionInputFlowControl";
+NSString * const AMSerialOptionOutputFlowControl = @"AMSerialOptionOutputFlowControl";
+NSString * const AMSerialOptionEcho = @"AMSerialOptionEcho";
+NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
 @implementation AMSerialPort
 
