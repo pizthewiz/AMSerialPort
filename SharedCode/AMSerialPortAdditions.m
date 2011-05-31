@@ -345,7 +345,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
             });           
         } else {
 #ifdef AMSerialDebug
-            NSLog(@"failed to read from port!");
+            NSLog(@"failed to read from port %@, possibly closed", bsdPath);
 #endif
         }
 	} else {
