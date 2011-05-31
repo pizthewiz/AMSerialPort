@@ -174,7 +174,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		old = delegate;
 		delegate = [(NSObject *)newDelegate retain];
 		[old release];
-		delegateHandlesReadInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPortReadData:)];
+		delegateHandlesReadInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPort:readData:)];
 		delegateHandlesWriteInBackground = [(NSObject *)delegate respondsToSelector:@selector(serialPortWriteProgress:)];
 	}
 }

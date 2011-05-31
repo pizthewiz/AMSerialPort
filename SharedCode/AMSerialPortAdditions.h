@@ -72,10 +72,7 @@
 
 - (void)readDataInBackground;
 //
-// Will send serialPortReadData: to delegate
-// the dataDictionary object will contain these entries:
-// 1. "serialPort": the AMSerialPort object that sent the message
-// 2. "data": (NSData *)data - received data
+// Will message delegate with serialPort:readData:
 
 - (void)stopReadInBackground;
 

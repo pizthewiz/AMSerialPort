@@ -341,7 +341,9 @@ static int64_t AMMicrosecondsSinceBoot (void)
 			bytesRead = read(fileDescriptor, localBuffer, AMSER_MAXBUFSIZE);
 		}
 		data = [NSData dataWithBytes:localBuffer length:bytesRead];
-		[(NSObject *)delegate performSelectorOnMainThread:@selector(serialPortReadData:) withObject:[NSDictionary dictionaryWithObjectsAndKeys: self, @"serialPort", data, @"data", nil] waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [delegate serialPort:self readData:data];
+        });
 	} else {
 		[closeLock unlock];
 	}

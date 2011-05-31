@@ -98,9 +98,11 @@ typedef enum {
 // Private constant
 #define AMSER_MAXBUFSIZE  4096UL
 
+@class AMSerialPort;
+
 @protocol AMSerialPortDelegate
 @optional
-- (void)serialPortReadData:(NSDictionary *)dataDictionary;
+- (void)serialPort:(AMSerialPort*)port readData:(NSData*)data;
 - (void)serialPortWriteProgress:(NSDictionary *)dataDictionary;
 @end
 
