@@ -1,0 +1,11 @@
+NOW
+[~] fix delegate methods to include port and stop using a dictionary
+[ ] remove observer in port list
+[ ] change name of designated initializer for port
+[ ] stop retaining delegate
+[ ] use properties for port bsdPath/name/type/properties
+[ ] use an NSError with -commitChanges
+
+LATER
+[ ] investigate phantom newline-only data
+[ ] investigate phantom issue with runaway kernel task / hang on re-plug
