@@ -536,7 +536,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
 			timeout.tv_sec = (__darwin_time_t)(remainingTimeout / 1000000);
 			timeout.tv_usec = (__darwin_suseconds_t)(remainingTimeout - (timeout.tv_sec * 1000000));
 #ifdef AMSerialDebug
-			NSLog(@"timeout remaining: %qd us = %d s and %d us", remainingTimeout, timeout.tv_sec, timeout.tv_usec);
+			NSLog(@"timeout remaining: %qd us = %d s and %d us", remainingTimeout, (int)timeout.tv_sec, timeout.tv_usec);
 #endif
 			
 			// If the remaining time is so small that it has rounded to zero, bump it up to 1 microsecond.

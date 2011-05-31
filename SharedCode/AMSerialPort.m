@@ -64,7 +64,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	// path is a bsdPath
 	// name is an IOKit service name
 {
-	if ((self = [super init])) {
+    self = [super init];
+	if (self) {
 		bsdPath = [path copy];
 		serviceName = [name copy];
 		serviceType = [type copy];
@@ -506,7 +507,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		[self commitChanges];
 	} else {
 #ifdef AMSerialDebug
-		NSLog(@"Error setting options for port %s (wrong port name: %s).\n", [self name], [newOptions objectForKey:AMSerialOptionServiceName]);
+		NSLog(@"Error setting options for port %@ (wrong port name: %@).\n", [self name], [newOptions objectForKey:AMSerialOptionServiceName]);
 #endif
 	}
 }
