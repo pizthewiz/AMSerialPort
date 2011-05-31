@@ -313,9 +313,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
 
 - (void)readDataInBackgroundThread
 {
-#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 1060)
 	(void)pthread_setname_np ("de.harmless.AMSerialPort.readDataInBackgroundThread");
-#endif
 	
 	NSData *data = nil;
 	void *localBuffer;
@@ -428,9 +426,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
 
 - (void)writeDataInBackgroundThread:(NSData *)data
 {
-#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 1060)
 	(void)pthread_setname_np ("de.harmless.AMSerialPort.writeDataInBackgroundThread");
-#endif
 	
 #ifdef AMSerialDebug
 	NSLog(@"writeDataInBackgroundThread");
