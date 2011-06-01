@@ -1,5 +1,5 @@
 NOW
-[~] fix delegate methods to include port and stop using a dictionary
+[X] fix delegate methods to include port and stop using a dictionary
 [ ] remove observer in port list
 [ ] change name of designated initializer for port
 [ ] stop retaining delegate
