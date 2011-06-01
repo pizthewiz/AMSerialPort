@@ -154,7 +154,7 @@ typedef enum {
 @property (nonatomic, readonly, assign) NSString *type;
 // IOKit service type (e.g. kIOSerialBSDRS232Type)
 
-- (NSDictionary *)properties;
+@property (nonatomic, readonly, assign) NSDictionary *properties;
 // IORegistry entry properties - see IORegistryEntryCreateCFProperties()
 
 

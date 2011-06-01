@@ -3,8 +3,10 @@ NOW
 [ ] remove observer in port list
 [X] change name of designated initializer for port
 [ ] stop retaining delegate
-[~] use properties for port bsdPath/name/type/properties
-[ ] use an NSError with -commitChanges
+[X] use properties for port bsdPath/name/type/properties
+[ ] use dynamic properties for port options
+[ ] use an NSError with -[AMSerialPort open]
+[ ] use an NSError with -[AMSerialPort commitChanges]
 
 LATER
 [ ] investigate phantom newline-only data

@@ -60,8 +60,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
 @implementation AMSerialPort
 
-@synthesize bsdPath, name = serviceName, type = serviceType;
-@synthesize readDelegate, writeDelegate;
+@synthesize bsdPath, name = serviceName, type = serviceType, readDelegate, writeDelegate;
+@dynamic properties;
 
 - (id)initWithPath:(NSString *)path name:(NSString *)name type:(NSString *)type
 	// path is a bsdPath
