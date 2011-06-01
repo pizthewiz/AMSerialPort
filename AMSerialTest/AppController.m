@@ -42,7 +42,7 @@
 
 #pragma mark - SERIAL PORT READ DELEGATE
 
-- (void)serialPort:(AMSerialPort *)sendPort readData:(NSData *)data
+- (void)serialPort:(AMSerialPort *)sendPort didReadData:(NSData *)data
 {
 	// this method is called if data arrives 
 	if ([data length] > 0) {

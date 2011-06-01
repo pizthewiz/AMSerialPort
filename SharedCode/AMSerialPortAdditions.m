@@ -342,7 +342,7 @@ static int64_t AMMicrosecondsSinceBoot (void)
         if (bytesRead > 0) {
             data = [NSData dataWithBytes:localBuffer length:bytesRead];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.readDelegate serialPort:self readData:data];
+                [self.readDelegate serialPort:self didReadData:data];
             });      
         } else {
 #ifdef AMSerialDebug
@@ -633,12 +633,9 @@ static int64_t AMMicrosecondsSinceBoot (void)
 #ifdef AMSerialDebug
 	NSLog(@"send AMSerialWriteInBackgroundProgressMessage");
 #endif
-	[(NSObject *)self.writeDelegate performSelectorOnMainThread:@selector(serialPortWriteProgress:) withObject:
-		[NSDictionary dictionaryWithObjectsAndKeys:
-			self, @"serialPort",
-			[NSNumber numberWithUnsignedLongLong:progress], @"value",
-			[NSNumber numberWithUnsignedLongLong:dataLen], @"total", nil]
-		waitUntilDone:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.writeDelegate serialPort:self didMakeWriteProgress:progress total:dataLen];
+    });
 }
 
 @end

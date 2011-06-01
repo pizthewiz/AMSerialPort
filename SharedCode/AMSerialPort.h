@@ -101,11 +101,10 @@ typedef enum {
 @class AMSerialPort;
 
 @protocol AMSerialPortReadDelegate
-- (void)serialPort:(AMSerialPort *)port readData:(NSData *)data;
+- (void)serialPort:(AMSerialPort *)port didReadData:(NSData *)data;
 @end
 @protocol AMSerialPortWriteDelegate
-// TODO - (void)serialPort:(AMSerialPort *)port ...;
-- (void)serialPortWriteProgress:(NSDictionary *)dataDictionary;
+- (void)serialPort:(AMSerialPort *)port didMakeWriteProgress:(NSUInteger)progress total:(NSUInteger)total;
 @end
 
 @interface AMSerialPort : NSObject
