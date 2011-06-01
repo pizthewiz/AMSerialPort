@@ -338,11 +338,12 @@ static int64_t AMMicrosecondsSinceBoot (void)
 		if ((res >= 1) && (fileDescriptor >= 0)) {
 			bytesRead = read(fileDescriptor, localBuffer, AMSER_MAXBUFSIZE);
 		}
+        // -1 suggests that read failed, perhaps because the port was closed
         if (bytesRead > 0) {
             data = [NSData dataWithBytes:localBuffer length:bytesRead];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.readDelegate serialPort:self readData:data];
-            });           
+            });      
         } else {
 #ifdef AMSerialDebug
             NSLog(@"failed to read from port %@, possibly closed", bsdPath);
