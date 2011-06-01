@@ -139,7 +139,7 @@ typedef enum {
 	int countReadInBackgroundThreads;
 }
 
-- (id)init:(NSString *)path withName:(NSString *)name type:(NSString *)serialType;
+- (id)initWithPath:(NSString *)path name:(NSString *)name type:(NSString *)type;
 // initializes port
 // path is a bsdPath
 // name is an IOKit service name

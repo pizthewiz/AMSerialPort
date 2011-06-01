@@ -1,7 +1,7 @@
 NOW
 [X] fix delegate methods to include port and stop using a dictionary
 [ ] remove observer in port list
-[ ] change name of designated initializer for port
+[X] change name of designated initializer for port
 [ ] stop retaining delegate
 [ ] use properties for port bsdPath/name/type/properties
 [ ] use an NSError with -commitChanges

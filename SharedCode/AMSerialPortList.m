@@ -66,7 +66,7 @@ NSString * const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 			// If the port already exists in the list of ports, we want that one.  We only create a new one as a last resort.
 			serialPort = [self serialPortWithName:(NSString*)bsdPath];
 			if (serialPort == nil) {
-				serialPort = [[[AMSerialPort alloc] init:(NSString*)bsdPath withName:(NSString*)modemName type:(NSString*)serviceType] autorelease];
+				serialPort = [[[AMSerialPort alloc] initWithPath:(NSString*)bsdPath name:(NSString*)modemName type:(NSString*)serviceType] autorelease];
 			}
 		}
 		if (modemName) {

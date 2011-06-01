@@ -62,7 +62,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
 @synthesize readDelegate, writeDelegate;
 
-- (id)init:(NSString *)path withName:(NSString *)name type:(NSString *)type
+- (id)initWithPath:(NSString *)path name:(NSString *)name type:(NSString *)type
 	// path is a bsdPath
 	// name is an IOKit service name
 {
@@ -147,7 +147,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 #endif
 
 - (id)copy {
-    return [[[self class] alloc] init:bsdPath withName:serviceName type:serviceType];
+    return [[[self class] alloc] initWithPath:bsdPath name:serviceName type:serviceType];
 }
 
 // So NSLog and gdb's 'po' command give something useful

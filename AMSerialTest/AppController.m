@@ -58,7 +58,7 @@
 	[outputTextView displayIfNeeded];
 }
 
-#pragma mark - NOTIFICATIONS
+#pragma mark - SERIAL PORT NOTIFICATIONS
 
 - (void)didAddPorts:(NSNotification *)theNotification
 {
