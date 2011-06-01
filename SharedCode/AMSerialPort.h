@@ -145,13 +145,13 @@ typedef enum {
 // name is an IOKit service name
 // type is an IOKit service type
 
-- (NSString *)bsdPath;
+@property (nonatomic, readonly, assign) NSString *bsdPath;
 // bsdPath (e.g. '/dev/cu.modem')
 
-- (NSString *)name;
+@property (nonatomic, readonly, assign) NSString *name;
 // IOKit service name (e.g. 'modem')
 
-- (NSString *)type;
+@property (nonatomic, readonly, assign) NSString *type;
 // IOKit service type (e.g. kIOSerialBSDRS232Type)
 
 - (NSDictionary *)properties;

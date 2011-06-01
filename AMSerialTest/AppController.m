@@ -117,12 +117,12 @@
 - (void)_setupPort
 {
     NSString *deviceName = [deviceTextField stringValue];
-	if (![deviceName isEqualToString:[self.port bsdPath]]) {
+	if (![deviceName isEqualToString:self.port.bsdPath]) {
 		[self.port close];
         self.port = [[AMSerialPortList sharedPortList] serialPortWithPath:deviceName];
 		
 		// register as self as delegate for port
-		[self.port setReadDelegate:self];
+		self.port.readDelegate = self;
 		
 		[outputTextView insertText:@"attempting to open port\r"];
 		[outputTextView setNeedsDisplay:YES];

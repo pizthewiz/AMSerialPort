@@ -3,7 +3,7 @@ NOW
 [ ] remove observer in port list
 [X] change name of designated initializer for port
 [ ] stop retaining delegate
-[ ] use properties for port bsdPath/name/type/properties
+[~] use properties for port bsdPath/name/type/properties
 [ ] use an NSError with -commitChanges
 
 LATER
