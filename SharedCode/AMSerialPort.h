@@ -209,45 +209,19 @@ typedef enum {
 // reading and setting parameters is only useful if the serial port is already open
 - (long)speed;
 - (BOOL)setSpeed:(long)speed;
-
-- (unsigned long)dataBits;
-- (void)setDataBits:(unsigned long)bits;	// 5 to 8 (5 may not work)
-
-- (AMSerialParity)parity;
-- (void)setParity:(AMSerialParity)newParity;
-
-- (AMSerialStopBits)stopBits;
-- (void)setStopBits:(AMSerialStopBits)numBits;
-
-- (BOOL)echoEnabled;
-- (void)setEchoEnabled:(BOOL)echo;
-
-- (BOOL)RTSInputFlowControl;
-- (void)setRTSInputFlowControl:(BOOL)rts;
-
-- (BOOL)DTRInputFlowControl;
-- (void)setDTRInputFlowControl:(BOOL)dtr;
-
-- (BOOL)CTSOutputFlowControl;
-- (void)setCTSOutputFlowControl:(BOOL)cts;
-
-- (BOOL)DSROutputFlowControl;
-- (void)setDSROutputFlowControl:(BOOL)dsr;
-
-- (BOOL)CAROutputFlowControl;
-- (void)setCAROutputFlowControl:(BOOL)car;
-
-- (BOOL)hangupOnClose;
-- (void)setHangupOnClose:(BOOL)hangup;
-
-- (BOOL)localMode;
-- (void)setLocalMode:(BOOL)local;	// YES = ignore modem status lines
-
-- (BOOL)canonicalMode;
-- (void)setCanonicalMode:(BOOL)flag;
-
-- (char)endOfLineCharacter;
-- (void)setEndOfLineCharacter:(char)eol;
+@property (nonatomic) unsigned long dataBits; // 5 to 8 (5 may not work)
+@property (nonatomic) AMSerialParity parity;
+@property (nonatomic) AMSerialStopBits stopBits;
+@property (nonatomic, getter=isEchoEnabled) BOOL echoEnabled;
+@property (nonatomic) BOOL RTSInputFlowControl;
+@property (nonatomic) BOOL DTRInputFlowControl;
+@property (nonatomic) BOOL CTSOutputFlowControl;
+@property (nonatomic) BOOL DSROutputFlowControl;
+@property (nonatomic) BOOL CAROutputFlowControl;
+@property (nonatomic) BOOL hangupOnClose;
+@property (nonatomic) BOOL localMode; // YES = ignore modem status lines
+@property (nonatomic) BOOL canonicalMode;
+@property (nonatomic) char endOfLineCharacter;
 
 // TODO - this should return an NSError* perhaps
 - (void)clearError;			// call this before changing any settings

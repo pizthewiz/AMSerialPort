@@ -4,7 +4,7 @@ NOW
 [X] change name of designated initializer for port
 [ ] stop retaining delegate
 [X] use properties for port bsdPath/name/type/properties
-[ ] use dynamic properties for port options
+[X] use dynamic properties for port options
 [ ] use an NSError with -[AMSerialPort open]
 [ ] use an NSError with -[AMSerialPort commitChanges]
 

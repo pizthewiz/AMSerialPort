@@ -61,7 +61,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 @implementation AMSerialPort
 
 @synthesize bsdPath, name = serviceName, type = serviceType, readDelegate, writeDelegate;
-@dynamic properties;
+@dynamic properties, dataBits, parity, stopBits, echoEnabled, RTSInputFlowControl, DTRInputFlowControl, CTSOutputFlowControl, DSROutputFlowControl, CAROutputFlowControl, hangupOnClose, localMode, canonicalMode, endOfLineCharacter;
 
 - (id)initWithPath:(NSString *)path name:(NSString *)name type:(NSString *)type
 	// path is a bsdPath
@@ -390,8 +390,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	[optionsDictionary removeAllObjects];
 	[optionsDictionary setObject:[self name] forKey:AMSerialOptionServiceName];
 	[optionsDictionary setObject:[NSString stringWithFormat:@"%ld", [self speed]] forKey:AMSerialOptionSpeed];
-	[optionsDictionary setObject:[NSString stringWithFormat:@"%lu", [self dataBits]] forKey:AMSerialOptionDataBits];
-	switch ([self parity]) {
+	[optionsDictionary setObject:[NSString stringWithFormat:@"%lu", self.dataBits] forKey:AMSerialOptionDataBits];
+	switch (self.parity) {
 		case kAMSerialParityOdd: {
 			[optionsDictionary setObject:@"Odd" forKey:AMSerialOptionParity];
 			break;
@@ -403,23 +403,23 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		default:;
 	}
 	
-	[optionsDictionary setObject:[NSString stringWithFormat:@"%d", [self stopBits]] forKey:AMSerialOptionStopBits];
-	if ([self RTSInputFlowControl])
+	[optionsDictionary setObject:[NSString stringWithFormat:@"%d", self.stopBits] forKey:AMSerialOptionStopBits];
+	if (self.RTSInputFlowControl)
 		[optionsDictionary setObject:@"RTS" forKey:AMSerialOptionInputFlowControl];
-	if ([self DTRInputFlowControl])
+	if (self.DTRInputFlowControl)
 		[optionsDictionary setObject:@"DTR" forKey:AMSerialOptionInputFlowControl];
 	
-	if ([self CTSOutputFlowControl])
+	if (self.CTSOutputFlowControl)
 		[optionsDictionary setObject:@"CTS" forKey:AMSerialOptionOutputFlowControl];
-	if ([self DSROutputFlowControl])
+	if (self.DSROutputFlowControl)
 		[optionsDictionary setObject:@"DSR" forKey:AMSerialOptionOutputFlowControl];
-	if ([self CAROutputFlowControl])
+	if (self.CAROutputFlowControl)
 		[optionsDictionary setObject:@"CAR" forKey:AMSerialOptionOutputFlowControl];
 	
-	if ([self echoEnabled])
+	if (self.isEchoEnabled)
 		[optionsDictionary setObject:@"YES" forKey:AMSerialOptionEcho];
 
-	if ([self canonicalMode])
+	if (self.canonicalMode)
 		[optionsDictionary setObject:@"YES" forKey:AMSerialOptionCanonicalMode];
 
 }
@@ -452,34 +452,34 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		[self setSpeed:[temp intValue]];
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionDataBits];
-		[self setDataBits:[temp intValue]];
+		self.dataBits = [temp intValue];
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionParity];
 		if (temp == nil)
-			[self setParity:kAMSerialParityNone];
+			self.parity = kAMSerialParityNone;
 		else if ([temp isEqualToString:@"Odd"])
-			[self setParity:kAMSerialParityOdd];
+			self.parity = kAMSerialParityOdd;
 		else
-			[self setParity:kAMSerialParityEven];
+			self.parity = kAMSerialParityEven;
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionStopBits];
-		int		numStopBits = [temp intValue];
-		[self setStopBits:(AMSerialStopBits)numStopBits];
+		AMSerialStopBits numStopBits = (AMSerialStopBits)[temp intValue];
+		self.stopBits = numStopBits;
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionInputFlowControl];
-		[self setRTSInputFlowControl:[temp isEqualToString:@"RTS"]];
-		[self setDTRInputFlowControl:[temp isEqualToString:@"DTR"]];
+		self.RTSInputFlowControl = [temp isEqualToString:@"RTS"];
+		self.DTRInputFlowControl = [temp isEqualToString:@"DTR"];
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionOutputFlowControl];
-		[self setCTSOutputFlowControl:[temp isEqualToString:@"CTS"]];
-		[self setDSROutputFlowControl:[temp isEqualToString:@"DSR"]];
-		[self setCAROutputFlowControl:[temp isEqualToString:@"CAR"]];
+		self.CTSOutputFlowControl = [temp isEqualToString:@"CTS"];
+		self.DSROutputFlowControl = [temp isEqualToString:@"DSR"];
+		self.CAROutputFlowControl = [temp isEqualToString:@"CAR"];
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionEcho];
-		[self setEchoEnabled:(temp != nil)];
+		self.echoEnabled = (temp != nil);
 
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionCanonicalMode];
-		[self setCanonicalMode:(temp != nil)];
+		self.canonicalMode = (temp != nil);
 
 		[self commitChanges];
 	} else {
@@ -607,7 +607,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 }
 
 
-- (BOOL)echoEnabled
+- (BOOL)isEchoEnabled
 {
 	return (options->c_lflag & ECHO);
 }
