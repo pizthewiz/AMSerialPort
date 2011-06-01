@@ -22,6 +22,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
+    self.port.readDelegate = nil;
+    [self.port free];
     [port release];
 
     [super dealloc];
@@ -144,6 +146,8 @@
 			[outputTextView insertText:@"\r"];
 			[outputTextView setNeedsDisplay:YES];
 			[outputTextView displayIfNeeded];
+
+            self.port.readDelegate = nil;
             self.port = nil;
 		}
 	}
