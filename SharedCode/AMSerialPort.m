@@ -737,33 +737,16 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	options->c_cc[VEOL] = eol;
 }
 
-- (void)clearError
+- (int)commitChanges
 {
-	// call this before changing any settings
-	gotError = NO;
-}
-
-- (BOOL)commitChanges
-{
-	// call this after using any of the setters above
-	if (gotError)
-		return NO;
-	
+    int status = 0;
 	if (tcsetattr(fileDescriptor, TCSANOW, options) == -1) {
 		// something went wrong
-		gotError = YES;
-		lastError = errno;
-		return NO;
+		status = errno;
 	} else {
 		[self buildOptionsDictionary];
-		return YES;
 	}
-}
-
-- (int)errorCode
-{
-	// if -commitChanges returns NO, look here for further info
-	return lastError;
+    return status;
 }
 
 - (NSTimeInterval)readTimeout

@@ -118,8 +118,6 @@ typedef enum {
 	struct termios * __strong originalOptions;
 	NSMutableDictionary *optionsDictionary;
 	NSFileHandle *fileHandle;
-	BOOL gotError;
-	int	lastError;
 	id owner;
 	char * __strong buffer;
 	NSTimeInterval readTimeout; // for public blocking read methods and doRead
@@ -209,6 +207,7 @@ typedef enum {
 // reading and setting parameters is only useful if the serial port is already open
 - (long)speed;
 - (int)setSpeed:(long)speed; // returns 0 on success errno on failure
+// after changing any of the following, one must send commitChanges
 @property (nonatomic) unsigned long dataBits; // 5 to 8 (5 may not work)
 @property (nonatomic) AMSerialParity parity;
 @property (nonatomic) AMSerialStopBits stopBits;
@@ -223,10 +222,8 @@ typedef enum {
 @property (nonatomic) BOOL canonicalMode;
 @property (nonatomic) char endOfLineCharacter;
 
-// TODO - this should return an NSError* perhaps
-- (void)clearError;			// call this before changing any settings
-- (BOOL)commitChanges;	// call this after using any of the above set... functions
-- (int)errorCode;				// if -commitChanges returns NO, look here for further info
+- (int)commitChanges; // returns 0 on success errno on failure
+
 
 // setting the delegate (for background reading/writing)
 @property (nonatomic, retain) id <AMSerialPortReadDelegate> readDelegate;
