@@ -495,9 +495,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	return cfgetospeed(options);	// we should support cfgetispeed too
 }
 
-- (BOOL)setSpeed:(long)speed
+- (int)setSpeed:(long)speed
 {
-	BOOL result = YES;
 	// we should support setting input and output speed separately
 	int errorCode = 0;
 
@@ -514,20 +513,17 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	if (fileDescriptor >= 0) {
 		errorCode = ioctl(fileDescriptor, IOSSIOSPEED, &newSpeed);
 	} else {
-		result = NO;
-		gotError = YES;
-		lastError = EBADF; // Bad file descriptor
+		errorCode = EBADF; // Bad file descriptor
 	}
 #else
 	// set both the input and output speed
 	errorCode = cfsetspeed(options, speed);
 #endif
 	if (errorCode == -1) {
-		result = NO;
-		gotError = YES;
-		lastError = errno;
+		errorCode = errno;
 	}
-	return result;
+
+    return errorCode;
 }
 
 

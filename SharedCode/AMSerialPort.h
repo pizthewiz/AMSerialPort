@@ -208,7 +208,7 @@ typedef enum {
 
 // reading and setting parameters is only useful if the serial port is already open
 - (long)speed;
-- (BOOL)setSpeed:(long)speed;
+- (int)setSpeed:(long)speed; // returns 0 on success errno on failure
 @property (nonatomic) unsigned long dataBits; // 5 to 8 (5 may not work)
 @property (nonatomic) AMSerialParity parity;
 @property (nonatomic) AMSerialStopBits stopBits;
