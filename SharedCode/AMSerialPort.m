@@ -154,20 +154,18 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 // So NSLog and gdb's 'po' command give something useful
 - (NSString *)description
 {
-	NSString *result= [NSString stringWithFormat:@"<%@: address: %p, name: %@, path: %@, type: %@, fileHandle: %@, fileDescriptor: %d>", NSStringFromClass([self class]), self, serviceName, bsdPath, serviceType, fileHandle, fileDescriptor];
+	NSString *result= [NSString stringWithFormat:@"<%@: address: %p, name: %@, path: %@, type: %@, fileHandle: %@, fileDescriptor: %d>", NSStringFromClass([self class]), self, self.name, self.bsdPath, self.type, fileHandle, fileDescriptor];
 	return result;
 }
 
 - (NSUInteger)hash
 {
-	return [[self bsdPath] hash];
+	return [self.bsdPath hash];
 }
 
 - (BOOL)isEqual:(id)otherObject
 {
-	if ([otherObject isKindOfClass:[AMSerialPort class]])
-		return [[self bsdPath] isEqualToString:[otherObject bsdPath]];
-	return NO;
+    return [otherObject isKindOfClass:[AMSerialPort class]] && [[(AMSerialPort*)otherObject bsdPath] isEqualToString:self.bsdPath];
 }
 
 #pragma mark -
@@ -444,8 +442,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	// method.
 	NSString *temp;
 	
-	if ([(NSString *)[newOptions objectForKey:AMSerialOptionServiceName] isEqualToString:[self name]]) {
-		[self clearError];
+	if ([(NSString *)[newOptions objectForKey:AMSerialOptionServiceName] isEqualToString:self.name]) {
 		[optionsDictionary addEntriesFromDictionary:newOptions];
 		// parse dictionary
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionSpeed];
@@ -484,7 +481,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		[self commitChanges];
 	} else {
 #ifdef AMSerialDebug
-		NSLog(@"Error setting options for port %@ (wrong port name: %@).\n", [self name], [newOptions objectForKey:AMSerialOptionServiceName]);
+		NSLog(@"Error setting options for port %@ (wrong port name: %@).\n", self.name, [newOptions objectForKey:AMSerialOptionServiceName]);
 #endif
 	}
 }
