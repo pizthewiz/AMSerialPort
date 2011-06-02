@@ -267,6 +267,11 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 			 NSLog(@"Error clearing O_NDELAY %@ - %s(%d).\n", bsdPath, strerror(errno), errno);
 		 } // ... else
 		 */
+
+#ifdef AMSerialDebug
+        NSLog(@"will get port tty attributes for %@ (%d)", bsdPath, fileDescriptor);
+#endif
+
 		// get the current options and save them for later reset
 		if (tcgetattr(fileDescriptor, originalOptions) == -1) {
 #ifdef AMSerialDebug
@@ -275,7 +280,11 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		} else {
 			// Make an exact copy of the options
 			*options = *originalOptions;
-			
+
+#ifdef AMSerialDebug
+            NSLog(@"will create NSFileHandle from descriptor (%d) for port %@", fileDescriptor, bsdPath);
+#endif
+
 			// This object owns the fileDescriptor and must dispose it later
 			// In other words, you must balance calls to -open with -close
 			fileHandle = [[NSFileHandle alloc] initWithFileDescriptor:fileDescriptor];
