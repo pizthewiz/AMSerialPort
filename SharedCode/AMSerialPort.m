@@ -118,9 +118,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		NSLog(@"It is a programmer error to have not called -close on an AMSerialPort you have opened");
 #endif
 
-    [(NSObject *)readDelegate release]; readDelegate = nil;
-    [(NSObject *)writeDelegate release]; writeDelegate = nil;
-
 	[readLock release]; readLock = nil;
 	[writeLock release]; writeLock = nil;
 	[closeLock release]; closeLock = nil;

@@ -104,6 +104,7 @@ typedef enum {
 - (void)serialPort:(AMSerialPort *)port didReadData:(NSData *)data;
 @end
 @protocol AMSerialPortWriteDelegate
+// apparently the delegate only gets messaged on longer writes
 - (void)serialPort:(AMSerialPort *)port didMakeWriteProgress:(NSUInteger)progress total:(NSUInteger)total;
 @end
 
@@ -226,8 +227,8 @@ typedef enum {
 
 
 // setting the delegate (for background reading/writing)
-@property (nonatomic, retain) id <AMSerialPortReadDelegate> readDelegate;
-@property (nonatomic, retain) id <AMSerialPortWriteDelegate> writeDelegate;
+@property (nonatomic, assign) id <AMSerialPortReadDelegate> readDelegate;
+@property (nonatomic, assign) id <AMSerialPortWriteDelegate> writeDelegate;
 
 // time out for blocking reads in seconds
 - (NSTimeInterval)readTimeout;
