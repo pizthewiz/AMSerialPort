@@ -58,6 +58,11 @@ NSString * const AMSerialOptionOutputFlowControl = @"AMSerialOptionOutputFlowCon
 NSString * const AMSerialOptionEcho = @"AMSerialOptionEcho";
 NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
+@interface AMSerialPort()
+- (NSFileHandle *)openWithFlags:(int)flags;
+- (void)buildOptionsDictionary;
+@end
+
 @implementation AMSerialPort
 
 @synthesize bsdPath, name = serviceName, type = serviceType, readDelegate, writeDelegate;
@@ -205,6 +210,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	return result;
 }
 
+#pragma mark -
 
 - (BOOL)isOpen
 {
@@ -380,6 +386,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	return result;
 }
 
+#pragma mark -
 
 // read and write serial port settings through a dictionary
 
@@ -486,6 +493,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	}
 }
 
+#pragma mark -
 
 - (long)speed
 {
@@ -522,7 +530,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 
     return errorCode;
 }
-
 
 - (unsigned long)dataBits
 {
@@ -746,6 +753,8 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
     return status;
 }
 
+#pragma mark -
+
 - (NSTimeInterval)readTimeout
 {
     return readTimeout;
@@ -756,8 +765,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
     readTimeout = aReadTimeout;
 }
 
-// private methods
-
 - (void)readTimeoutAsTimeval:(struct timeval*)timeout
 {
 	NSTimeInterval timeoutInterval = [self readTimeout];
@@ -766,6 +773,5 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	timeout->tv_sec = (time_t)lrint(numSecs);
 	timeout->tv_usec = (suseconds_t)lrint(numUSecs);
 }
-
 
 @end
