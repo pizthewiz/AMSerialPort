@@ -36,7 +36,8 @@ extern NSString * const AMSerialPortListRemovedPorts;
 @interface AMSerialPortList : NSObject
 {
 @private
-	NSMutableArray *portList;
+    IONotificationPortRef notificationPort;
+    NSMutableArray *portList;
 }
 
 + (AMSerialPortList *)sharedPortList;

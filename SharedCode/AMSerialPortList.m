@@ -134,7 +134,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 
 - (void)registerForSerialPortChangeNotifications
 {
-	IONotificationPortRef notificationPort = IONotificationPortCreate(kIOMasterPortDefault); 
+	notificationPort = IONotificationPortCreate(kIOMasterPortDefault); 
 	if (notificationPort) {
 		CFRunLoopSourceRef notificationSource = IONotificationPortGetRunLoopSource(notificationPort);
 		if (notificationSource) {
@@ -176,7 +176,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 #endif
 			}
 		}
-		// Note that IONotificationPortDestroy(notificationPort) is deliberately not called here because if it were our port change notifications would never fire.  This minor leak is pretty irrelevent since this object is a singleton that lives for the life of the application anyway.
+		// Note that IONotificationPortDestroy(notificationPort) is deliberately not called here because if it were our port change notifications would never fire. It is instead deferred until -dealloc
 	}
 }
 
@@ -226,11 +226,15 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 }
 
 - (void)dealloc {
+    if (notificationPort)
+        IONotificationPortDestroy(notificationPort);
+
     [portList release];
-    // TODO - remove notification observer
 
     [super dealloc];
 }
+
+#pragma mark -
 
 - (NSArray *)serialPorts
 {

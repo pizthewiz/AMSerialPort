@@ -1,6 +1,6 @@
 NOW
 [X] fix delegate methods to include port and stop using a dictionary
-[ ] remove observer in port list
+[X] remove observer in port list
 [X] change name of designated initializer for port
 [X] stop retaining delegate
 [X] use properties for port bsdPath/name/type/properties
