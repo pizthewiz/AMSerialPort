@@ -43,8 +43,8 @@ extern NSString * const AMSerialPortListRemovedPorts;
 + (AMSerialPortList *)sharedPortList;
 
 - (NSArray *)serialPorts;
-- (AMSerialPort *)serialPortWithPath:(NSString *)bsdPath;
-- (AMSerialPort *)serialPortWithName:(NSString *)name;
+- (AMSerialPort *)serialPortForPath:(NSString *)bsdPath;
+- (AMSerialPort *)serialPortForName:(NSString *)name;
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey;
 
 @end

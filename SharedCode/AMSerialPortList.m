@@ -64,7 +64,7 @@ NSString * const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 		CFStringRef serviceType = (CFStringRef)IORegistryEntryCreateCFProperty(serialService, CFSTR(kIOSerialBSDTypeKey), kCFAllocatorDefault, 0);
 		if (modemName && bsdPath) {
 			// If the port already exists in the list of ports, we want that one.  We only create a new one as a last resort.
-			serialPort = [self serialPortWithName:(NSString*)bsdPath];
+			serialPort = [self serialPortForName:(NSString*)bsdPath];
 			if (serialPort == nil) {
 				serialPort = [[[AMSerialPort alloc] initWithPath:(NSString*)bsdPath name:(NSString*)modemName type:(NSString*)serviceType] autorelease];
 			}
@@ -241,7 +241,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 	return [[portList copy] autorelease];
 }
 
-- (AMSerialPort *)serialPortWithPath:(NSString *)bsdPath
+- (AMSerialPort *)serialPortForPath:(NSString *)bsdPath
 {
     AMSerialPort *result = nil;
     for (AMSerialPort *port in portList) {
@@ -253,7 +253,7 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
     return result;
 }
 
-- (AMSerialPort *)serialPortWithName:(NSString *)name
+- (AMSerialPort *)serialPortForName:(NSString *)name
 {
     AMSerialPort *result = nil;
     for (AMSerialPort *port in portList) {

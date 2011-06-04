@@ -121,7 +121,7 @@
     NSString *deviceName = [deviceTextField stringValue];
 	if (![deviceName isEqualToString:self.port.bsdPath]) {
 		[self.port close];
-        self.port = [[AMSerialPortList sharedPortList] serialPortWithPath:deviceName];
+        self.port = [[AMSerialPortList sharedPortList] serialPortForPath:deviceName];
 		
 		// register as self as delegate for port
 		self.port.readDelegate = self;
