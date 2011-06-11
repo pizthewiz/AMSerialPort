@@ -78,17 +78,10 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		serviceName = [name copy];
 		serviceType = [type copy];
 		optionsDictionary = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
-#ifndef __OBJC_GC__
 		options = (struct termios* __strong)malloc(sizeof(*options));
 		originalOptions = (struct termios* __strong)malloc(sizeof(*originalOptions));
 		buffer = (char* __strong)malloc(AMSER_MAXBUFSIZE);
 		readfds = (fd_set* __strong)malloc(sizeof(*readfds));
-#else
-		options = (struct termios* __strong)NSAllocateCollectable(sizeof(*options), 0);
-		originalOptions = (struct termios* __strong)NSAllocateCollectable(sizeof(*originalOptions), 0);
-		buffer = (char* __strong)NSAllocateCollectable(AMSER_MAXBUFSIZE, 0);
-		readfds = (fd_set* __strong)NSAllocateCollectable(sizeof(*readfds), 0);
-#endif
 		fileDescriptor = -1;
 		
 		writeLock = [[NSLock alloc] init];
@@ -108,8 +101,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	}
 	return self;
 }
-
-#ifndef __OBJC_GC__
 
 - (void)dealloc
 {
@@ -133,21 +124,6 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 	[bsdPath release]; bsdPath = nil;
 	[super dealloc];
 }
-
-#else
-
-- (void)finalize
-{
-#ifdef AMSerialDebug
-	if (fileDescriptor != -1)
-		NSLog(@"It is a programmer error to have not called -close on an AMSerialPort you have opened");
-#endif
-	assert (fileDescriptor == -1);
-
-	[super finalize];
-}
-
-#endif
 
 - (id)copy {
     return [[[self class] alloc] initWithPath:bsdPath name:serviceName type:serviceType];
