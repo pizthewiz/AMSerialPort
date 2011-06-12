@@ -194,7 +194,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 - (AMSerialPort *)obtainBy:(id)sender
 {
 	// get this port exclusively; NULL if it's not free
-	if (owner == nil) {
+	if (!owner) {
 		owner = sender;
 		return self;
 	} else
@@ -415,7 +415,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 - (NSDictionary *)options
 {
 	// will open the port to get options if neccessary
-	if ([optionsDictionary objectForKey:AMSerialOptionServiceName] == nil) {
+	if (![optionsDictionary objectForKey:AMSerialOptionServiceName]) {
 		if (fileDescriptor < 0) {
 			[self open];
 			[self close];
@@ -441,7 +441,7 @@ NSString * const AMSerialOptionCanonicalMode = @"AMSerialOptionCanonicalMode";
 		self.dataBits = [temp intValue];
 		
 		temp = (NSString *)[optionsDictionary objectForKey:AMSerialOptionParity];
-		if (temp == nil)
+		if (!temp)
 			self.parity = kAMSerialParityNone;
 		else if ([temp isEqualToString:@"Odd"])
 			self.parity = kAMSerialParityOdd;

@@ -65,7 +65,7 @@ NSString * const AMSerialPortListRemovedPorts = @"AMSerialPortListRemovedPorts";
 		if (modemName && bsdPath) {
 			// If the port already exists in the list of ports, we want that one.  We only create a new one as a last resort.
 			serialPort = [self serialPortForName:(NSString*)bsdPath];
-			if (serialPort == nil) {
+			if (!serialPort) {
 				serialPort = [[[AMSerialPort alloc] initWithPath:(NSString*)bsdPath name:(NSString*)modemName type:(NSString*)serviceType] autorelease];
 			}
 		}
@@ -243,36 +243,36 @@ static void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 
 - (AMSerialPort *)serialPortForPath:(NSString *)bsdPath
 {
-    AMSerialPort *result = nil;
-    for (AMSerialPort *port in portList) {
+    __block AMSerialPort *result = nil;
+    [portList enumerateObjectsUsingBlock:^(id port, NSUInteger idx, BOOL *stop) {
         if (![[port bsdPath] isEqualToString:bsdPath])
-            continue;
+            return;
         result = port;
-        break;
-    }
+        *stop = YES;
+    }];
     return result;
 }
 
 - (AMSerialPort *)serialPortForName:(NSString *)name
 {
-    AMSerialPort *result = nil;
-    for (AMSerialPort *port in portList) {
+    __block AMSerialPort *result = nil;
+    [portList enumerateObjectsUsingBlock:^(id port, NSUInteger idx, BOOL *stop) {
         if (![[port name] isEqualToString:name])
-            continue;
+            return;
         result = port;
-        break;
-    }
+        *stop = YES;
+    }];
     return result;
 }
 
 - (NSArray *)serialPortsOfType:(NSString *)serialTypeKey
 {
-    NSMutableArray *result = [NSMutableArray array];
-    for (AMSerialPort *port in portList) {
+    __block NSMutableArray *result = [NSMutableArray array];
+    [portList enumerateObjectsUsingBlock:^(id port, NSUInteger idx, BOOL *stop) {
         if (![[port type] isEqualToString:serialTypeKey])
-            continue;
+            return;
         [result addObject:port];
-    }
+    }];
     return result;
 }
 
