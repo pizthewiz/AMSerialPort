@@ -162,7 +162,9 @@
 - (BOOL)writeData:(NSData *)data error:(NSError **)error
 {
 #ifdef AMSerialDebug
-	NSLog(@"•wrote: %@ • %@", data, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"•wrote: %@ • %@", data, string);
+	[string release];
 #endif
 
 	BOOL result = NO;
@@ -619,7 +621,9 @@ static int64_t AMMicrosecondsSinceBoot (void)
 	}
 	
 #ifdef AMSerialDebug
-	NSLog(@"• read: %@ • %@", result, [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding]);
+	NSString* string = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+	NSLog(@"• read: %@ • %@", result, string);
+	[string release];
 #endif
 
 	return result;
