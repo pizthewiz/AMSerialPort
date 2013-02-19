@@ -19,7 +19,7 @@
 		E158FFF80C58DE2E00B8171B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		E158FFF90C58DE2E00B8171B /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B6E09502D03AB10100010A /* AppController.m */; };
 		E158FFFC0C58DE2E00B8171B /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF950C58DDAB00B8171B /* AMSerialPort.m */; };
-		E158FFFD0C58DE2E00B8171B /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF970C58DDAB00B8171B /* AMSerialPortAdditions.m */; };
+		E158FFFD0C58DE2E00B8171B /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF970C58DDAB00B8171B /* AMSerialPortAdditions.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		E158FFFF0C58DE2E00B8171B /* AMSerialPortList.m in Sources */ = {isa = PBXBuildFile; fileRef = E158FF9B0C58DDAB00B8171B /* AMSerialPortList.m */; };
 /* End PBXBuildFile section */
 
@@ -183,7 +183,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = E13F800C0863426A00EC3999 /* Build configuration list for PBXProject "AMSerial" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -255,6 +255,10 @@
 		D80CAA6A13946E1D00F6F861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -263,11 +267,13 @@
 					AMSerialDebug,
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WARNING_CFLAGS = "-Wall";
@@ -277,6 +283,7 @@
 		D80CAA6B13946E1D00F6F861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -302,14 +309,20 @@
 		D80CAA6C13946E2600F6F861 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -318,6 +331,7 @@
 		D80CAA6D13946E2600F6F861 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
